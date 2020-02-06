@@ -1,3 +1,3 @@
 <label for="name">Nome</label>
-<input type="text" id="name" #personNameEl>
-<button (click)="onCreatePerson(personNameEl.value)">Criar</button>
+<input type="text" id="name" [(ngModel)]="enteredPersonName">
+<button (click)="onCreatePerson()">Criar</button>
