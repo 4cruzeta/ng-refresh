@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng-refresh';
+  persons: string[] = ['Antonho', 'Justino', 'Deocleciano']; // aqui é a entrada de dados que é "exportada",
+                                                            // enviada para o app.component.html
 }
