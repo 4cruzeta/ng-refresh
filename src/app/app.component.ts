@@ -8,4 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   persons: string[] = ['Antonho', 'Justino', 'Deocleciano']; // aqui é a entrada de dados que é "exportada",
                                                             // enviada para o app.component.html
+     onPersonCreate(name: string){
+      this.persons.push(name);
+     }
 }
