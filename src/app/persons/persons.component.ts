@@ -17,6 +17,9 @@ constructor(private prsService: PersonsService) {
 
 ngOnInit(){
   this.personList = this.prsService.persons;
+  this.prsService.personsChanged.subscribe(persons => {
+    this.personList = persons;
+  } );
 }
 
 onRemovePerson(personName: string) {
