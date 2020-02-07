@@ -1,4 +1,4 @@
-<ul>
-  <li *ngFor="let person of personList" (click)="onRemovePerson(person)">{{ person }}</li>  <!--  Procedente do app.componet.html,
-                                                                para a saída final  -->
+<p *ngIf="isFetching">Carregando...</p>
+<ul *ngIf="!isFetching">
+  <li *ngFor="let person of personList" (click)="onRemovePerson(person)">{{ person }}</li>
 </ul>
