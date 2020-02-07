@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PersonsService } from './persons.service';
+import { Subscribable, Subscription } from 'rxjs';
 
 @Component({                                    // Diz ao Angular que isso é um Component. @ - decorator
   selector: 'app-persons',                      // convenção usar prefixo app, -, nome do componente
   templateUrl: './persons.component.html'
 
 })
-export class PersonsComponent implements OnInit{
+export class PersonsComponent implements OnInit, OnDestroy{
 personList: string[];
+private personListSubs: Subscription;
 // private personService: PersonsService;
 
 constructor(private prsService: PersonsService) {
@@ -16,14 +18,17 @@ constructor(private prsService: PersonsService) {
 }
 
 ngOnInit(){
-  this.personList = this.prsService.persons;
-  this.prsService.personsChanged.subscribe(persons => {
+    this.personListSubs = this.prsService.personsChanged.subscribe(persons => {
     this.personList = persons;
   } );
+    this.prsService.fetchPersons();
 }
 
 onRemovePerson(personName: string) {
   this.prsService.removePerson(personName);
 }
 
+ngOnDestroy() {
+  this.personListSubs.unsubscribe();
+}
 }
